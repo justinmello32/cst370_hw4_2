@@ -11,6 +11,21 @@
 #include <iostream>
 
 using namespace std;
+
+int returnMaxInt(int array[], int start, int end ) {
+
+    //If single item
+    if(start == end) {
+        return array[start];
+    }
+    else {
+        int max1 = returnMaxInt(array,start,(start+end)/2);
+        int max2 = returnMaxInt(array,(start+end)/2+1, end);
+        return(max(max1,max2));
+    }
+
+}
+
 int main() {
 
     int count = 0;
@@ -22,6 +37,9 @@ int main() {
     for(int i = 0; i < count; i++) {
         cin >> numbers[i];
     }
+
+    int max = returnMaxInt(numbers, 0, count - 1 );
+    cout << max;
 
     return 0;
 }
